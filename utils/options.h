@@ -417,8 +417,37 @@ namespace Utilities {
     unsigned int valuevec_size_;
   };
 
-  template<> bool Option<bool>::set_value(const string& s);
-  template<> std::ostream& Option<bool>::print(std::ostream& s) const;
+  // template<> bool Option<bool>::set_value(const string& s);
+  // template<> std::ostream& Option<bool>::print(std::ostream& s) const;
+  template<> bool Option<bool>::set_value(const string& s)
+  {
+    if (s.length() == 0)
+    {
+      value_ = !default_;
+      unset_ = false;
+    }
+    else if (s == "true")
+    {
+      value_ = true;
+      unset_ = false;
+    }
+    else if (s == "false")
+    {
+      value_ = false;
+      unset_ = false;
+    }
+    return !unset_;
+  }
+
+  template<> ostream& Option<bool>::print(ostream& os) const
+  {
+    os << "# " << help_text() << endl;
+    if (set())
+      os << config_key().substr(0, config_key().find("="));
+
+    return os;
+  }
+
   //  std::ostream& operator<<(std::ostream& os, const Option<bool>& o);
   std::ostream& operator<<(std::ostream& os, const BaseOption& o);
 

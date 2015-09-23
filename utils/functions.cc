@@ -68,6 +68,7 @@ namespace Utilities {
   
   using namespace std;
 
+  /**
   template<> string Option<bool>::config_key() const
   {
     if(set()) {
@@ -109,7 +110,7 @@ namespace Utilities {
       os << config_key().substr(0, config_key().find("=")); 
 
     return os;
-  }
+  }*/
   
   ostream& operator<<(ostream& os, const BaseOption& o)
   {
