@@ -11,6 +11,6 @@ set(Srcs nifti1_io.c)
 
 add_library(niftiio ${Srcs})
 
-# add_definitions(-DEXPOSE_TREACHEROUS)
+add_definitions(-DHAVE_ZLIB)
 
 target_link_libraries(niftiio znzlib)

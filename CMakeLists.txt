@@ -23,6 +23,10 @@ SET(CMAKE_INSTALL_RPATH "$ORIGIN/../lib:$ORIGIN/")
 # which point to directories outside the build tree to the install RPATH
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH FALSE)
 
+# find_package(VTK REQUIRED)
+# include(${VTK_USE_FILE})
+# include_directories(${VTK_INCLUDE_DIRS})
+
 add_subdirectory(znzlib)
 add_subdirectory(niftiio)
 add_subdirectory(newmat)
@@ -31,6 +35,7 @@ add_subdirectory(newimage)
 add_subdirectory(meshclass)
 add_subdirectory(miscmaths)
 add_subdirectory(utils)
+add_subdirectory(vtkzlib)
 
 set( Srcs bet2.cpp)
 ##set( Hdrs bet2.cpp)
@@ -43,7 +48,7 @@ include_directories(
 
 add_executable(bet2 ${Srcs} )
 target_link_libraries(bet2
-	newmat fslio newimage niftiio znzlib meshclass utils miscmaths 
+	newmat fslio newimage niftiio znzlib meshclass utils miscmaths vtkzlib
 	)
 
 

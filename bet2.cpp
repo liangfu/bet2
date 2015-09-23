@@ -796,6 +796,13 @@ int main(int argc, char *argv[]) {
   for (int i=0; i<nb_iter; i++)
     {
       step_of_computation(testvol, m, bet_main_parameter, 0, 0, i, l, bp.t2, bp.tm, bp.t, E, F, bp.cog.Z, bp.radius, gradient_threshold.value());
+
+      // display progress, revised by liangfu
+      if ((i%int(nb_iter*.01f)) == 1){
+        fprintf(stdout, "[%3.0f%%] <b>BrainExtractor</b>: Performing %d of %d iterations.\t\t\r",
+          i*100.f / nb_iter, i, nb_iter);
+        fflush(stdout);
+      }
     }
   
   double tmp = m.self_intersection(moriginal);

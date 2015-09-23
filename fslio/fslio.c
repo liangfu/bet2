@@ -172,6 +172,7 @@ void FslSetWriteMode(FSLIO *fslio, int mode)
 
 int FslGetEnvOutputType(void)
 {
+#if 0
   /* return type is one of FSL_TYPE_* or -1 to indicate error */
   char *otype;
   if (FslOverrideOutputType>=0)  return FslOverrideOutputType;
@@ -191,6 +192,9 @@ int FslGetEnvOutputType(void)
   fprintf(stderr,"Legal values are: NIFTI, NIFTI_PAIR, NIFTI_GZ, NIFTI_PAIR_GZ\n");
   exit(EXIT_FAILURE);
   return -1;
+#else
+  return FSL_TYPE_NIFTI_GZ;
+#endif
 }
     
 

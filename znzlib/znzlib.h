@@ -59,7 +59,7 @@ extern "C" {
 #if defined(ITKZLIB)
 #include "itk_zlib.h"
 #else
-#include "zlib.h"
+#include "vtkzlib/zlib.h"
 #endif
 #endif
 
