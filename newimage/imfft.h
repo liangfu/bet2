@@ -74,7 +74,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <unistd.h>
+//#include <unistd.h>
 
 #include "newmatap.h"
 #include "newmatio.h"

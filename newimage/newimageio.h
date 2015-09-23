@@ -81,6 +81,8 @@
 #include "fslio/fslio.h"
 #include "miscmaths/miscmaths.h"
 
+typedef signed long long int int64_t;
+
 using namespace NEWMAT;
 
 namespace NEWIMAGE {

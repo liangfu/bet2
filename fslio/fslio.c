@@ -27,7 +27,7 @@
 
 #include "fslio.h"
 #include "assert.h"
-#include <unistd.h>
+//#include <unistd.h>
 
 static int FslIgnoreMFQ=0;
 static int FslOverrideOutputType=-1;

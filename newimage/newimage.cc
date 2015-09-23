@@ -946,7 +946,7 @@ namespace NEWIMAGE {
 	  return (*p_userinterp)(*this,x,y,z);
 	}
       case nearestneighbour:
-	ix=round(x); iy=round(y); iz=round(z);
+        ix = MISCMATHS::round(x); iy = MISCMATHS::round(y); iz = MISCMATHS::round(z);
 	return this->operator()(ix,iy,iz);
       case trilinear:
 	{
@@ -993,7 +993,7 @@ namespace NEWIMAGE {
 	  return (*p_userinterp)(*this,x,y,z);
 	}
       case nearestneighbour:
-	ix=round(x); iy=round(y); iz=round(z);
+        ix = MISCMATHS::round(x); iy = MISCMATHS::round(y); iz = MISCMATHS::round(z);
 	return value(ix,iy,iz);
       case trilinear:
 	{

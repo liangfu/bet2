@@ -2047,7 +2047,7 @@ volume<S> extractpart(const volume<T>& v1, const volume<S>& v2, const volume<U>&
 }
 
   template <class T, class S> 
-    volume4D<T> generic_convolve(const volume4D<T>& source, const volume<S>& kernel, bool seperable=false, bool renormalise=true) 
+    volume4D<T> generic_convolve(const volume4D<T>& source, const volume<S>& kernel, bool seperable, bool renormalise) 
   { 
       volume4D<T> result(source);
       if (seperable)
@@ -2067,14 +2067,14 @@ volume<S> extractpart(const volume<T>& v1, const volume<S>& v2, const volume<U>&
       {
         volume<S> norm_kernel(kernel);
         if (kernel.sum()) norm_kernel/=kernel.sum();
-	for (int t=source.mint(); t<=source.maxt(); t++) result[t]=efficient_convolve(source[t],norm_kernel);
+	      for (int t=source.mint(); t<=source.maxt(); t++) result[t]=efficient_convolve(source[t],norm_kernel);
         result.copyproperties(source);
         if(renormalise)
-	{
-	  volume4D<T> unitary_mask(source);
-          unitary_mask=1;
-          for (int t=source.mint(); t<=source.maxt(); t++) unitary_mask[t]=efficient_convolve(unitary_mask[t],norm_kernel);
-          result/=unitary_mask;
+        {
+          volume4D<T> unitary_mask(source);
+          unitary_mask = 1;
+          for (int t = source.mint(); t <= source.maxt(); t++) unitary_mask[t] = efficient_convolve(unitary_mask[t], norm_kernel);
+          result /= unitary_mask;
         }
       }
     return result; 
