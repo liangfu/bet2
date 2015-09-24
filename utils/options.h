@@ -419,7 +419,7 @@ namespace Utilities {
 
   // template<> bool Option<bool>::set_value(const string& s);
   // template<> std::ostream& Option<bool>::print(std::ostream& s) const;
-  template<> bool Option<bool>::set_value(const string& s)
+  template<> inline bool Option<bool>::set_value(const string& s)
   {
     if (s.length() == 0)
     {
@@ -439,7 +439,7 @@ namespace Utilities {
     return !unset_;
   }
 
-  template<> ostream& Option<bool>::print(ostream& os) const
+  template<> inline ostream& Option<bool>::print(ostream& os) const
   {
     os << "# " << help_text() << endl;
     if (set())
