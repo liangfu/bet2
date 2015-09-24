@@ -121,9 +121,9 @@ Option<bool> outline(string("-o,--outline"), false,
 Option<bool> skull(string("-s,--skull"), false, 
 		   string("generate approximate skull image"),
 		   false, no_argument);
-Option<bool> mask(string("-m,--mask"), false, 
-		  string("generate binary brain mask"), 
-		  false, no_argument);
+Option<string> generate_mask(string("-m,--mask"), string(""),
+		  string("~<m>\tgenerate binary brain mask"), 
+      false, requires_argument);
 Option<bool> no_output(string("-n,--nooutput"), false, 
 		       string("don't generate segmented brain image output"), 
 		       false, no_argument);
@@ -656,7 +656,7 @@ int main(int argc, char *argv[]) {
   //parsing options
   OptionParser options(title, examples);
   options.add(outline);
-  options.add(mask);
+  options.add(generate_mask);
   options.add(skull);
   options.add(no_output);
   options.add(fractional_threshold);
@@ -799,7 +799,7 @@ int main(int argc, char *argv[]) {
 
       // display progress, revised by liangfu
       if ((i%int(nb_iter*.01f)) == 1){
-        fprintf(stdout, "[%3.0f%%] <b>BrainExtractor</b>: Performing %d of %d iterations.\t\t\r",
+        fprintf(stdout, "[%3.0f%%] BET: Performing %d of %d iterations.\t\t\r",
           i*100.f / nb_iter, i, nb_iter);
         fflush(stdout);
       }
@@ -876,11 +876,12 @@ int main(int argc, char *argv[]) {
       if (save_volume(output,out.c_str())<0)  return -1;
     }  
   
-  if (mask.value())
-    {
-      string maskstr = out+"_mask";
-      if (save_volume((short)1-brainmask, maskstr.c_str())<0)  return -1;
-    }
+  if (generate_mask.value().size()>0){
+      if (save_volume((short)1 - brainmask, generate_mask.value().c_str())<0)  return -1;
+  }else{
+    string maskstr = out + "_mask";
+    if (save_volume((short)1 - brainmask, maskstr.c_str())<0)  return -1;
+  }
   
   if (outline.value())
     {
